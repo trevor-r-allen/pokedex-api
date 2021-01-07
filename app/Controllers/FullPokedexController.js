@@ -26,9 +26,9 @@ export default class FullPokedexController{
       console.error(error);
     }
   }
-  getOnePokemon(id){
+  getOnePokemon(name){
     try{
-      fullPokedexService.getOnePokemon(id)
+      fullPokedexService.getOnePokemon(name)
     }
     catch(error){
       console.error(error);

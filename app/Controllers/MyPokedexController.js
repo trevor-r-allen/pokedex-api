@@ -11,6 +11,8 @@ function _draw(){
 export default class MyPokedexController{
   constructor(){
     ProxyState.on("myPokedex", _draw)
+    _draw()
+    this.getAllPokemon()
   }
   catchPokemon(){
     try{
@@ -28,9 +30,9 @@ export default class MyPokedexController{
       console.error(error);
     }
   }
-  getOnePokemon(id){
+  getOnePokemon(name){
     try{
-      myPokedexService.getOnePokemon(id)
+      myPokedexService.getOnePokemon(name)
     }
     catch(error){
       console.error(error);

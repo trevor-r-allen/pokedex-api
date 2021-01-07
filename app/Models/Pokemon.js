@@ -1,13 +1,13 @@
 export default class Pokemon {
-constructor({name, img, description, weight, height, types, sprites, species}){
+constructor({name, img, description, weight, height, types, sprites, id}){
   this.name = name
   this.img = img || sprites.other['official-artwork'].front_default
-  this.description = description || species
+  this.description = description
   this.height = height
   this.weight = weight
-  let typeString = ""
-  types.forEach(t => {typeString+= t.type.name+" "})
-  this.types = typeString
+  this.types = types || types.map(t => t.type.name).join(" | ")
+  this.id = id || null
+  console.log(this)
 }
 
 get Template(){
@@ -18,7 +18,14 @@ get Template(){
   <p>Height: ${this.height} Weight: ${this.weight}</p>
   <p>Types: ${this.types}</p>
   <p>${this.description}</p>
-  <button type="button" class="btn btn-outline-primary" onclick="app.myPokedexController.catchPokemon()">Catch</button>
+  ${this.Button}
   `
+}
+
+get Button(){
+  if(this.id){
+    return /*html*/`<button type="button" class="btn btn-outline-success" onclick="app.myPokedexController.catchPokemon()">Catch</button>`
+  }
+  return /*html*/`<button type="button" class="btn btn-outline-danger" onclick="app.myPokedexController.removePokemon(${this.id})">Remove</button>`
 }
 }
