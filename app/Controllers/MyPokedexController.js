@@ -4,7 +4,7 @@ import { myPokedexService } from "../Services/MyPokedexService.js";
 function _draw(){
   let pokedex = ProxyState.myPokedex
   let template = /*html*/`<h2>All Pokemon</h2><ol>`
-  pokedex.forEach(p => template += /*html*/`<li onclick="app.myPokedexController.getOnePokemon('${p.name}')">${p.name}</li>`)
+  pokedex.forEach(p => template += /*html*/`<li onclick="app.myPokedexController.getOnePokemon('${p.id}')">${p.name}</li>`)
   document.getElementById('myPokedex').innerHTML = template+/*html*/`</ol>`
 }
 
@@ -14,14 +14,6 @@ export default class MyPokedexController{
     _draw()
     this.getAllPokemon()
   }
-  catchPokemon(){
-    try{
-      myPokedexService.catchPokemon()
-    }
-    catch(error){
-      console.error(error);
-    }
-  }
   getAllPokemon(){
     try{
       myPokedexService.getAllPokemon()
@@ -30,13 +22,30 @@ export default class MyPokedexController{
       console.error(error);
     }
   }
-  getOnePokemon(name){
+  getOnePokemon(id){
     try{
-      myPokedexService.getOnePokemon(name)
+      myPokedexService.getOnePokemon(id)
     }
     catch(error){
       console.error(error);
     }
   }
-
+  catchPokemon(){
+    try{
+      myPokedexService.catchPokemon()
+    }
+    catch(error){
+      console.error(error);
+    }
+  }
+  
+  removePokemon(){
+    try{
+      myPokedexService.removePokemon()
+    }
+    catch(error){
+      console.error(error);
+    }
+  }
+  
 }

@@ -8,8 +8,11 @@ function _draw(){
   document.getElementById('fullPokedex').innerHTML = template+/*html*/`</ol>`
 }
 function _drawActive(){
-  let pokemon = ProxyState.activePokemon
-  document.getElementById('activePokemon').innerHTML = pokemon.Template
+  let template = ''
+  if(ProxyState.activePokemon){
+  template = ProxyState.activePokemon.Template
+  }
+  document.getElementById('activePokemon').innerHTML = template
 }
 export default class FullPokedexController{
   constructor(){
